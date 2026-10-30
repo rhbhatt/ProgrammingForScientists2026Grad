@@ -4,11 +4,12 @@ from multiprocessing import Pool
 from time import monotonic
 
 import matplotlib.pyplot as plt
-import pandas as pd
 import numpy as np
+import pandas as pd
 
 shape = (1_000, 1_000)
 count = 100
+
 
 def main():
     matrices = [np.random.randn(prod(shape)).reshape(shape) for _ in range(count)]
@@ -31,8 +32,9 @@ def main():
         times[p] = end - start
 
     times_series = pd.Series(times)
-    times_series.plot.line(xlabel='Processes', ylabel='Time (s)')
-    plt.savefig('runtime_by_process_count.pdf', bbox_inches='tight')
+    times_series.plot.line(xlabel="Processes", ylabel="Time (s)")
+    plt.savefig("runtime_by_process_count.pdf", bbox_inches="tight")
+
 
 if __name__ == "__main__":
     main()
